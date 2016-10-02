@@ -3,6 +3,8 @@
 cd /home/argy/workspace/HelloWorld
 git add .
 git commit -m "new commit"
-git push origin master
+echo give the branch you want commit changes to
+read b
+git push origin $b
 
 

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd /home/argy/workspace/HelloWorld
+echo give the name of the new branch
+read nb
+echo creating branch "$nb on local machine ...."
+git checkout -b "$nb"
+echo creating branch "$nb on github ...."
+git push origin "$nb"
+echo "done !!!"
+echo " Do you want to push the project in that new branch ?"
+echo "type y for yes or push any key for abort"
+read r
+
+if [ "$r" = "y" ]; then
+ git add .
+ git commit -m "new commit"
+ git push origin "$nb"
+fi

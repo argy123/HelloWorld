@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+
+cd /home/argy/workspace/HelloWorld
+echo give the branch you want to delete
+read db
+echo "deleting branch from your local machine.."
+ git branch -D $db
+
+while [ $? != 0 ]; do
+   echo "on which branch do you want to jump??"
+   read jb
+   git checkout $jb  
+   git branch -D $db
+done
+
+
+  echo "deleting branch from github..."
+  git push origin :$db
+while [ $? != 0 ]; do
+   git push origin :$db
+done
+
+
