@@ -6,7 +6,12 @@ read nb
 echo creating branch "$nb on local machine ...."
 git checkout -b "$nb"
 echo creating branch "$nb on github ...."
+
 git push origin "$nb"
+while [ $? != 0 ]; do
+   git push origin :$nb
+done
+
 echo "done !!!"
 echo " Do you want to push the project in that new branch ?"
 echo "type y for yes or push any key for abort"
