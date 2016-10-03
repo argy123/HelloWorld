@@ -2,7 +2,7 @@
 
 
 
-cd /home/argy/workspace/HelloWorld
+cd ~/workspace/HelloWorld
 echo give the branch you want to delete
 read db
 echo "deleting branch from your local machine.."

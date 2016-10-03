@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/argy/workspace/HelloWorld
+cd ~/workspace/HelloWorld
 git add .
 git commit -m "new commit"
 echo give the branch you want commit changes to
