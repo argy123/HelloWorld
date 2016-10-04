@@ -6,6 +6,7 @@ import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseRichBolt;
+import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 
 public class HelloWorldBolt extends BaseRichBolt{
@@ -31,8 +32,8 @@ public class HelloWorldBolt extends BaseRichBolt{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		// TODO Auto-generated method stub
 		
+		declarer.declare(new Fields("sentence"));
 	}
 	
 	

@@ -20,14 +20,11 @@ public class HelloWorldTopology {
 	 * @throws InvalidTopologyException 
 	 * @throws AlreadyAliveException 
 	 */
-	public static void main(String[] args) throws AlreadyAliveException, InvalidTopologyException {
+	public static void main(String[] args ) throws AlreadyAliveException, InvalidTopologyException {
 		
 		TopologyBuilder builder = new TopologyBuilder();
-		builder.setSpout("randomHelloWorld", new
-		HelloWorldSpout(), 10);
-		builder.setBolt("HelloWorldBolt", new
-		HelloWorldBolt(), 2)
-		.shuffleGrouping("randomHelloWorld");
+		builder.setSpout("randomHelloWorld", new HelloWorldSpout(), 10);
+		builder.setBolt("HelloWorldBolt", new HelloWorldBolt(), 3).shuffleGrouping("randomHelloWorld");
 		Config conf = new Config();
 		conf.setDebug(true);
 		
@@ -36,9 +33,8 @@ public class HelloWorldTopology {
 			StormSubmitter.submitTopology(args[0], conf,builder.createTopology());
 		} else {
 			LocalCluster cluster = new LocalCluster();
-			cluster.submitTopology("test", conf,
-			builder.createTopology());
-			Utils.sleep(10000);
+			cluster.submitTopology("test", conf,builder.createTopology());
+			Utils.sleep(200000);
 			cluster.killTopology("test");
 			cluster.shutdown();
 		}

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+# If the script is not runing as "root" then...
+# relaunch it as "root".
+                            
+if [[ $USER != "root" ]]; then    
+    sudo $0  
+    exit 0                          
+fi  
+
+
+#start zookeeper
+  /opt/zookeeper-3.4.9/bin/zkServer.sh start &&
+#start zkCli
+gnome-terminal -x bash -c "echo starting zkCli!!Please wait.. && /opt/zookeeper-3.4.9/bin/zkCli.sh" 
+#start nimbus node
+gnome-terminal -x bash -c "echo starting nimbus node!!Please wait.. && /opt/apache-storm-1.0.2/bin/storm nimbus" 
+#start supervisor
+gnome-terminal -x bash -c "echo starting slave nodes!!Please wait.. && /opt/apache-storm-1.0.2/bin/storm supervisor" 
+#start storm ui
+gnome-terminal -x bash -c "echo starting storm ui!!Please wait.. && /opt/apache-storm-1.0.2/bin/storm ui"
+
+read  -p "Done!! Press any key to kill storm and zookeper threads.."
+
+#kill all threads
+/opt/zookeeper-3.4.9/bin/zkServer.sh stop
+
+for pid in $(ps -ef | awk '/zookeeper/ {print $2}'); do 
+kill -9 $pid; 
+done
+
+for pid in $(ps -ef | awk '/storm/ {print $2}'); do 
+kill -9 $pid; 
+done
+
+read  -p "Done!!"

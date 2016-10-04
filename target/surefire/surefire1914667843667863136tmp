@@ -1,5 +1,5 @@
 #surefire
-#Sat Oct 01 20:21:27 EEST 2016
+#Mon Oct 03 19:53:27 EEST 2016
 excludes0=**/*$*
 useSystemClassLoader=true
 enableAssertions=true
